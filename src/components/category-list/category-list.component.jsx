@@ -2,7 +2,7 @@ import './category-list.styles.scss';
 
 import CategoryItem from '../category-list-item/category-list-item.component';
 
-const CategoryList = ({categories}) => {
+const CategoryList = ({ categories }) => {
 
     return (
         <div className="categories-container">
