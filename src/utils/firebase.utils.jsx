@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword,
+signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 
@@ -28,7 +29,10 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore();
 
-export const createDocumentFromAuth = async (userAuth) => {
+export const createDocumentFromAuth = async (userAuth,additionParams = {}) => {
+    if (!userAuth) {
+        return;
+    }
     const userDocRef = doc(db, 'users', userAuth.uid);
     console.log(userDocRef);
 
@@ -41,17 +45,32 @@ export const createDocumentFromAuth = async (userAuth) => {
         const createdAt = new Date();
 
         try {
-            
-            await setDoc(userDocRef,{
+
+            await setDoc(userDocRef, {
                 displayName,
                 email,
-                createdAt
+                createdAt,
+                ...additionParams
             })
 
         } catch (error) {
-            console.log("Not able to store the user: ",error.message);
+            console.log("Not able to store the user: ", error.message);
         }
     }
 
     return userDocRef;
+}
+
+export const createUserAuthEmailAndPassword = async (email, password) => {
+    if (!email || !password) {
+        return;
+    }
+    return await createUserWithEmailAndPassword(auth, email, password);
+}
+
+export const signInUserAuthEmailAndPassword = async (email, password) => {
+    if (!email || !password) {
+        return;
+    }
+    return await signInWithEmailAndPassword(auth, email, password);
 }
