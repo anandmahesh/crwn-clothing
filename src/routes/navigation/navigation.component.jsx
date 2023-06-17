@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import { ReactComponent as CrwnLogo } from "../../assests/crown.svg";
@@ -15,8 +15,8 @@ const Navigation = () => {
         await signOutUser();
         setCurrentUser(null);
     }
-    console.log("currentUser: ", currentUser);    
-
+    //console.log("currentUser: ", currentUser);
+    
     return (
         <Fragment>
             <div className="navigation">
