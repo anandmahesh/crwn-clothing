@@ -3,11 +3,19 @@ import Button from '../button/button.component';
 import './cart-dropdown.styles.scss';
 import { CartContext } from '../../context/cart.context';
 import CartItem from '../cart-item/cart-item.component';
+import { useNavigate } from 'react-router-dom';
 
 
 const CartDropdown = () => {
 
-    const { cartItems } = useContext(CartContext);
+    const { cartItems, toggleCart } = useContext(CartContext);
+
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        navigate('/checkout');
+        toggleCart(false);
+    }
 
     return (
         <div className="cart-dropdown-container">
@@ -20,7 +28,7 @@ const CartDropdown = () => {
                     ))
                 }
             </div>
-            <Button>GO TO CHECKOUT</Button>
+            <Button onClick={handleCheckout}>GO TO CHECKOUT</Button>
         </div>
     );
 
