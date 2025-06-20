@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const BackgroundImage = styled.div`
+export const BackgroundImage = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'imageUrl'
+})`
   width: 100%;
   height: 100%;
   background-size: cover;

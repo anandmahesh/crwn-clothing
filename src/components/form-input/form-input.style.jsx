@@ -9,7 +9,9 @@ const shrinkLabelStyles = css`
   color: ${mainColor};
 `
 
-export const FormInputLabel = styled.label`
+export const FormInputLabel = styled.label.withConfig({
+  shouldForwardProp: (prop) => prop !== 'shrink'
+})`
   color: ${subColor};
   font-size: 16px;
   font-weight: normal;

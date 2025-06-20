@@ -4,6 +4,7 @@ const FormInput = ({ label, ...otherProps }) => {
     return (
         <Group>
             <Input
+                autoComplete={'current-password'}
                 {...otherProps}
             />
             {
