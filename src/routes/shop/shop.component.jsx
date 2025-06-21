@@ -3,8 +3,8 @@ import CategoriesPreview from '../categories-preivew/categories-preview.componen
 import Category from '../category/category.component';
 import { useEffect } from 'react';
 import { getCategoriesAndDocuments } from '../../utils/firebase.utils';
-import { setCategories } from '../../store/categories/categories.action';
 import { useDispatch } from 'react-redux';
+import { setCategories } from '../../store/categories/categories.reducer';
 
 
 const Shop = () => {

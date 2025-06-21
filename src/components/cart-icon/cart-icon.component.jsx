@@ -1,4 +1,4 @@
-import { toggleCart } from '../../store/cart/cart.action';
+import { toggleCart } from '../../store/cart/cart.reducer';
 import { selectCartCount, selectIsCartOpen } from '../../store/cart/cart.selector';
 import { CartIconContainer, ItemCount, ShoppingIcon } from './cart-icon.styles';
 import { useDispatch, useSelector } from 'react-redux';
