@@ -3,7 +3,7 @@ import CategoriesPreview from '../categories-preivew/categories-preview.componen
 import Category from '../category/category.component';
 import { useEffect } from 'react';
 import { getCategoriesAndDocuments } from '../../utils/firebase.utils';
-import { fetchCategoriesAsync, setCategories } from '../../store/categories/categories.action';
+import { fetchCategoriesAsync, fetchCategoriesStart, setCategories } from '../../store/categories/categories.action';
 import { useDispatch } from 'react-redux';
 
 
@@ -12,8 +12,11 @@ const Shop = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        //Using redux-saga
+        dispatch(fetchCategoriesStart());
+
         //Using thunk
-        dispatch(fetchCategoriesAsync());
+        //dispatch(fetchCategoriesAsync());
         // const getCategoriesMap = async () => {
         //     const categoryArray = await getCategoriesAndDocuments();
         //     console.log(categoryArray);
