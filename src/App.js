@@ -5,9 +5,9 @@ import Authentication from "./routes/authentication/authentication.components";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.components";
 import { useEffect } from "react";
-import { createUserDocumentFromAuth, onAuthStateChangedListener } from "./utils/firebase.utils";
+import { createUserDocumentFromAuth, getCurrentUser, onAuthStateChangedListener } from "./utils/firebase.utils";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "./store/user/user.action";
+import { checkUserSession, setCurrentUser } from "./store/user/user.action";
 
 
 const App = () => {
@@ -15,14 +15,18 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let unsubscribe = onAuthStateChangedListener(async (user) => {
-      if (user) {
-        createUserDocumentFromAuth(user)
-      }
-      dispatch(setCurrentUser(user));
-    })
+    // let unsubscribe = onAuthStateChangedListener(async (user) => {
+    //   if (user) {
+    //     createUserDocumentFromAuth(user)
+    //   }
+    //   dispatch(setCurrentUser(user));
+    // })
 
-    return unsubscribe;
+    // return unsubscribe;
+
+    //getCurrentUser().then((userAuth) => console.log(userAuth));
+    //redux saga
+    dispatch(checkUserSession());
   }, []);
 
   return (

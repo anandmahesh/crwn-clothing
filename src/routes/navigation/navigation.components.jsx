@@ -6,16 +6,21 @@ import { signOutUser } from "../../utils/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.components";
 import { NavigationContainer, NavLinks, NavLink, LogoContainer } from "./navigation.styles.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector.js";
 import { selectIsCartOpen } from "../../store/cart/cart.selector.js";
+import { signOutStart } from "../../store/user/user.action.js";
 
 
 const Navigation = () => {
 
+    const dispatch = useDispatch();
+
     const currentUser = useSelector(selectCurrentUser);
 
     const isCartOpen = useSelector(selectIsCartOpen);
+
+    const signOutUser = () => dispatch(signOutStart());
 
     return (
         <Fragment>

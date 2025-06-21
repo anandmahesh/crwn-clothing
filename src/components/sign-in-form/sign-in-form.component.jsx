@@ -3,6 +3,8 @@ import { createAuthUserWithEmailAndPassword, signInAuthUserWithEmailAndPassword,
 import FormInput from "../form-input/form-input.component";
 import './sign-in-form.styles.scss';
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useDispatch } from "react-redux";
+import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
 
 
 const defaultFormFields = {
@@ -12,6 +14,8 @@ const defaultFormFields = {
 
 
 const SignInForm = () => {
+
+    const dispatch = useDispatch();
 
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
@@ -28,16 +32,21 @@ const SignInForm = () => {
     //     fetchUser();
     // }, []);
 
-    const logGoogleUser = async (event) => {
+    const logGoogleUser = (event) => {
         event.preventDefault();
-        await signInWithGooglePopup();
+        //used redux saga
+        dispatch(googleSignInStart());
+        //const userAuth = await signInWithGooglePopup();
+        //console.log(userAuth);
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         try {
-            let { user } = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(user);
+            //let { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            //console.log(user);
+            //use redux saga
+            dispatch(emailSignInStart(email, password));
 
             setFormFields(defaultFormFields); // Reset form fields after successful signup
         } catch (error) {
