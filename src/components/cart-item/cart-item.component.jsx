@@ -1,5 +1,5 @@
 import './cart-item.styles.scss';
-
+import { memo } from 'react';
 
 const CartItem = ({ cartItem }) => {
 
@@ -17,6 +17,6 @@ const CartItem = ({ cartItem }) => {
         </div>
     );
 
-}
+};
 
-export default CartItem;
+export default memo(CartItem);
