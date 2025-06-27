@@ -1,8 +1,11 @@
+import { Middleware } from "redux";
+import { RootState } from "../store";
 
 //Our own custom logger
-export const loggMiddleWare = (store) => (next) => (action) => {
+export const loggMiddleWare: Middleware<{}, RootState> =
+  (store) => (next) => (action) => {
     if (!action.type) {
-        return next(action);
+      return next(action);
     }
 
     console.log("type: ", action.type);
@@ -12,5 +15,4 @@ export const loggMiddleWare = (store) => (next) => (action) => {
     next(action);
 
     console.log("Next State: ", store.getState());
-
-}
+  };
