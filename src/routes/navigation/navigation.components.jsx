@@ -7,9 +7,9 @@ import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.components";
 import { NavigationContainer, NavLinks, NavLink, LogoContainer } from "./navigation.styles.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../../store/user/user.selector.js";
-import { selectIsCartOpen } from "../../store/cart/cart.selector.js";
-import { signOutStart } from "../../store/user/user.action.js";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { signOutStart } from "../../store/user/user.action";
 
 
 const Navigation = () => {
