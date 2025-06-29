@@ -1,15 +1,16 @@
-import { Middleware } from "redux";
+import { Middleware, UnknownAction } from "redux";
 import { RootState } from "../store";
 
 //Our own custom logger
 export const loggMiddleWare: Middleware<{}, RootState> =
   (store) => (next) => (action) => {
-    if (!action.type) {
+    const typedAction = action as UnknownAction;
+    if (!typedAction.type) {
       return next(action);
     }
 
-    console.log("type: ", action.type);
-    console.log("payload: ", action.payload);
+    console.log("type: ", typedAction.type);
+    console.log("payload: ", typedAction.payload);
     console.log("Prev State: ", store.getState());
 
     next(action);
