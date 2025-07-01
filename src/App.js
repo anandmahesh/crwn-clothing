@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { createUserDocumentFromAuth, getCurrentUser, onAuthStateChangedListener } from "./utils/firebase.utils";
 import { useDispatch } from "react-redux";
 import { checkUserSession, setCurrentUser } from "./store/user/user.action";
+import { GlobalStyle } from "./global.styles";
 
 
 const App = () => {
@@ -30,14 +31,17 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path="shop/*" element={<Shop />} />
-        <Route path="auth" element={<Authentication />} />
-        <Route path="checkout" element={<Checkout />} />
-      </Route>
-    </Routes>
+    <>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="shop/*" element={<Shop />} />
+          <Route path="auth" element={<Authentication />} />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
+      </Routes>
+    </>
   );
 
 }
